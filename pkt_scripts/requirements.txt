@@ -1,0 +1,5 @@
+crc==4.2.0
+etao==1.1.0
+hexdump==3.3
+pycryptodome==3.18.0
+scapy==2.5.0

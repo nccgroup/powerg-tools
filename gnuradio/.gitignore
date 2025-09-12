@@ -1,0 +1,5 @@
+grc/*.py
+
+venv/
+__pycache__/
+

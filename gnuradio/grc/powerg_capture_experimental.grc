@@ -1,0 +1,2288 @@
+options:
+  parameters:
+    author: James Chambers
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: NCC Group 2024
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: powerg_capture_experimental
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: PowerG Capture (Experimental)
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 12.0]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: bottom_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: '912749725'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 60.0]
+    rotation: 0
+    state: true
+- name: bp_transition_width
+  id: variable
+  parameters:
+    comment: ''
+    value: '10000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 636.0]
+    rotation: 0
+    state: true
+- name: center_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: overall_center_freq
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 252.0]
+    rotation: 0
+    state: true
+- name: chan_center_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: bottom_freq + chan_id * chan_spacing
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 188.0]
+    rotation: 0
+    state: true
+- name: chan_id
+  id: variable
+  parameters:
+    comment: ''
+    value: variable_qtgui_range_channel
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 124.0]
+    rotation: 0
+    state: true
+- name: chan_spacing
+  id: variable
+  parameters:
+    comment: ''
+    value: '129730'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 188.0]
+    rotation: 0
+    state: true
+- name: decimated_samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: samp_rate / decimation_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [472, 700.0]
+    rotation: 0
+    state: true
+- name: decimation_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: int(samp_rate / (samp_bandwidth*1))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [504, 636.0]
+    rotation: 0
+    state: true
+- name: deviation_for_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: oscillator_deviation * center_freq
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1056, 580.0]
+    rotation: 0
+    state: true
+- name: fft_vec_sz
+  id: variable
+  parameters:
+    comment: ''
+    value: '2048'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 1076.0]
+    rotation: 0
+    state: true
+- name: gfsk_sens
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: qtgui_tab_widget_0@1
+    label: GFSK Sensitivity
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0.1'
+    step: '0.1'
+    stop: '10'
+    value: '1.0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [432, 1732.0]
+    rotation: 0
+    state: true
+- name: n_cfo_est_avg
+  id: variable
+  parameters:
+    comment: ''
+    value: '16'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1624, 1140.0]
+    rotation: 0
+    state: true
+- name: n_ffts_avg
+  id: variable
+  parameters:
+    comment: ''
+    value: '16'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [840, 1076.0]
+    rotation: 0
+    state: true
+- name: num_channels
+  id: variable
+  parameters:
+    comment: ''
+    value: '50'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 124.0]
+    rotation: 0
+    state: true
+- name: oscillator_deviation
+  id: variable
+  parameters:
+    comment: ''
+    value: 20/1000000
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [920, 580.0]
+    rotation: 0
+    state: true
+- name: overall_center_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: bottom_freq + (chan_spacing * (num_channels-1)) / 2
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 316.0]
+    rotation: 0
+    state: true
+- name: samp_bandwidth
+  id: variable
+  parameters:
+    comment: ''
+    value: '250000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 316.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '8000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 252.0]
+    rotation: 0
+    state: enabled
+- name: samples_per_symbol
+  id: variable
+  parameters:
+    comment: ''
+    value: int(decimated_samp_rate // symbols_per_second)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [480, 764.0]
+    rotation: 0
+    state: true
+- name: symbols_per_second
+  id: variable
+  parameters:
+    comment: ''
+    value: '50000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 764.0]
+    rotation: 0
+    state: true
+- name: variable_qtgui_range_channel
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: qtgui_tab_widget_0@0
+    label: Channel ID
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '0'
+    step: '1'
+    stop: num_channels - 1
+    value: '15'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 412.0]
+    rotation: 0
+    state: true
+- name: variable_qtgui_range_loop_bw
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: qtgui_tab_widget_0@1
+    label: Loop Bandwidth
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: math.pi / 200
+    step: '0.0001'
+    stop: (2*math.pi) / 100
+    value: '0.026008'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1184, 580.0]
+    rotation: 0
+    state: disabled
+- name: variable_qtgui_range_shift
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: qtgui_tab_widget_0@1
+    label: Shift input
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '-100000'
+    step: '1000'
+    stop: '100000'
+    value: '0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [632, 700.0]
+    rotation: 0
+    state: enabled
+- name: variable_qtgui_range_squelch_db
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: qtgui_tab_widget_0@1
+    label: Squelch threshold
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '-100'
+    step: '1'
+    stop: '0'
+    value: '-25'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [800, 700.0]
+    rotation: 0
+    state: true
+- name: variable_qtgui_range_ted_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: TED Gain
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.001'
+    stop: '1'
+    value: '1.0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1184, 708.0]
+    rotation: 0
+    state: disabled
+- name: variable_qtgui_range_trigger
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Trigger
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '-1'
+    step: '0.1'
+    stop: '1'
+    value: '0.3'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [992, 700.0]
+    rotation: 0
+    state: disabled
+- name: analog_const_source_x_0
+  id: analog_const_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1240, 1388.0]
+    rotation: 0
+    state: enabled
+- name: analog_const_source_x_0_0
+  id: analog_const_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1344, 1580.0]
+    rotation: 0
+    state: enabled
+- name: analog_quadrature_demod_cf_1
+  id: analog_quadrature_demod_cf
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: For showing raw quad demod output
+    gain: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [432, 1284.0]
+    rotation: 0
+    state: enabled
+- name: analog_quadrature_demod_cf_1_0
+  id: analog_quadrature_demod_cf
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    gain: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [792, 1484.0]
+    rotation: 0
+    state: enabled
+- name: analog_simple_squelch_cc_0
+  id: analog_simple_squelch_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha: '1'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    threshold: variable_qtgui_range_squelch_db
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [952, 428.0]
+    rotation: 0
+    state: enabled
+- name: band_pass_filter_0
+  id: band_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    decim: decimation_rate
+    gain: '1'
+    high_cutoff_freq: (chan_center_freq - center_freq) + (chan_spacing/2)
+    interp: '1'
+    low_cutoff_freq: (chan_center_freq - center_freq) - (chan_spacing/2)
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fir_filter_ccc
+    width: bp_transition_width
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 380.0]
+    rotation: 0
+    state: disabled
+- name: blocks_burst_tagger_0
+  id: blocks_burst_tagger
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    false_key: sync
+    false_value: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    true_key: sync
+    true_value: 'True'
+    type: float
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [968, 1668.0]
+    rotation: 0
+    state: true
+- name: blocks_complex_to_mag_squared_0
+  id: blocks_complex_to_mag_squared
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: fft_vec_sz
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [992, 988.0]
+    rotation: 0
+    state: enabled
+- name: blocks_delay_0
+  id: blocks_delay
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    delay: fft_vec_sz
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    showports: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 876.0]
+    rotation: 0
+    state: true
+- name: blocks_file_sink_0
+  id: blocks_file_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    append: 'False'
+    comment: ''
+    file: ''
+    type: complex
+    unbuffered: 'False'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 36.0]
+    rotation: 0
+    state: disabled
+- name: blocks_file_sink_1
+  id: blocks_file_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    append: 'False'
+    comment: ''
+    file: /tmp/powerg_bits
+    type: byte
+    unbuffered: 'False'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 1692.0]
+    rotation: 0
+    state: disabled
+- name: blocks_file_sink_1_0
+  id: blocks_file_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    append: 'False'
+    comment: ''
+    file: /tmp/powerg_bytes
+    type: byte
+    unbuffered: 'False'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [936, 1828.0]
+    rotation: 0
+    state: disabled
+- name: blocks_file_source_0
+  id: blocks_file_source
+  parameters:
+    affinity: ''
+    alias: ''
+    begin_tag: pmt.PMT_NIL
+    comment: ''
+    file: ''
+    length: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: int(samp_rate)* 0
+    repeat: 'True'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 140.0]
+    rotation: 0
+    state: enabled
+- name: blocks_freqshift_cc_0
+  id: blocks_freqshift_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: Manual CFO fix
+    freq: variable_qtgui_range_shift
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sample_rate: decimated_samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1216, 420.0]
+    rotation: 0
+    state: enabled
+- name: blocks_moving_average_xx_0_1
+  id: blocks_moving_average_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    length: n_ffts_avg
+    max_iter: '4000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: 1/n_ffts_avg
+    type: float
+    vlen: fft_vec_sz
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1216, 964.0]
+    rotation: 0
+    state: true
+- name: blocks_moving_average_xx_1
+  id: blocks_moving_average_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    length: n_cfo_est_avg
+    max_iter: '4000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: 1/n_cfo_est_avg
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1616, 1044.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1240, 1340.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1344, 1532.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_xx_0
+  id: blocks_multiply_const_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: 1/fft_vec_sz
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: fft_vec_sz
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [768, 980.0]
+    rotation: 0
+    state: enabled
+- name: blocks_repeat_0
+  id: blocks_repeat
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    interp: samples_per_symbol
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1176, 1692.0]
+    rotation: 0
+    state: true
+- name: blocks_repeat_0_0
+  id: blocks_repeat
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: Estimator outputs one CFO val per group of FFT inputs
+    interp: fft_vec_sz
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1760, 988.0]
+    rotation: 0
+    state: true
+- name: blocks_stream_to_vector_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: fft_vec_sz
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 992.0]
+    rotation: 0
+    state: true
+- name: blocks_sub_xx_0
+  id: blocks_sub_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1424, 1344.0]
+    rotation: 0
+    state: enabled
+- name: blocks_sub_xx_0_0
+  id: blocks_sub_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1528, 1528.0]
+    rotation: 0
+    state: enabled
+- name: blocks_throttle_0
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [840, 172.0]
+    rotation: 0
+    state: enabled
+- name: blocks_uchar_to_float_0
+  id: blocks_uchar_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 1640.0]
+    rotation: 0
+    state: enabled
+- name: blocks_uchar_to_float_0_0
+  id: blocks_uchar_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1056, 1344.0]
+    rotation: 0
+    state: enabled
+- name: blocks_uchar_to_float_0_0_0
+  id: blocks_uchar_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1160, 1528.0]
+    rotation: 0
+    state: enabled
+- name: digital_binary_slicer_fb_0
+  id: digital_binary_slicer_fb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [904, 1344.0]
+    rotation: 0
+    state: enabled
+- name: digital_binary_slicer_fb_0_0
+  id: digital_binary_slicer_fb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1008, 1528.0]
+    rotation: 0
+    state: enabled
+- name: digital_gfsk_demod_0
+  id: digital_gfsk_demod
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    freq_error: '0.0'
+    gain_mu: 0.175*2
+    log: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mu: '0.5'
+    omega_relative_limit: (20/1e6)*2
+    samples_per_symbol: samples_per_symbol
+    sensitivity: gfsk_sens
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [432, 1596.0]
+    rotation: 0
+    state: enabled
+- name: digital_symbol_sync_xx_0
+  id: digital_symbol_sync_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: digital.constellation_bpsk().base()
+    damping: '1.0'
+    loop_bw: '0.045'
+    max_dev: '1.5'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nfilters: '128'
+    osps: samples_per_symbol
+    pfb_mf_taps: '[]'
+    resamp_type: digital.IR_MMSE_8TAP
+    sps: samples_per_symbol
+    ted_gain: '1.0'
+    ted_type: digital.TED_EARLY_LATE
+    type: cc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [432, 1412.0]
+    rotation: 0
+    state: true
+- name: epy_block_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\n\n\nclass blk(gr.sync_block):  # other base classes\
+      \ are basic_block, decim_block, interp_block\n    \"\"\"CFO Estimator (RMS)\"\
+      \"\"\n\n    def __init__(self, vector_size=2048, sample_rate=10000, center_freq=0):\
+      \  # only default arguments here\n        \"\"\"arguments to this function show\
+      \ up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n         \
+      \   self,\n            name='CFO Estimator (RMS)',   # will show up in GRC\n\
+      \            in_sig=[(np.float32, vector_size)],\n            out_sig=[np.float32]\n\
+      \        )\n        # if an attribute with the same name as a parameter is found,\n\
+      \        # a callback is registered (properties work, too).\n        self.vector_size\
+      \ = vector_size\n        self.sample_rate = sample_rate\n        self.center_freq\
+      \ = center_freq\n        \n        self._start_freq = self.center_freq - (self.sample_rate\
+      \ / 2)\n        self.freq_axis = [self._start_freq + (self.sample_rate/self.vector_size)\
+      \ * x for x in range(self.vector_size)]\n\n    def work(self, input_items, output_items):\n\
+      \        \"\"\"Estimate offset with RMS on FFT outputs\"\"\"\n\n        for\
+      \ vec_i, vector in enumerate(input_items[0]):\n            energy = 0\n    \
+      \        top_integral = 0\n\n            # mag^2 output per FFT bin\n      \
+      \      for i, mag in enumerate(vector):\n                energy += mag\n   \
+      \             top_integral += mag * self.freq_axis[i]\n            \n      \
+      \      if energy == 0:\n                cf_estimate = 0\n            else:\n\
+      \                cf_estimate = top_integral / energy\n            \n       \
+      \     output_items[0][vec_i] = cf_estimate\n                \n        return\
+      \ len(output_items[0])\n\n"
+    affinity: ''
+    alias: ''
+    center_freq: '0'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sample_rate: decimated_samp_rate
+    vector_size: fft_vec_sz
+  states:
+    _io_cache: ('CFO Estimator (RMS)', 'blk', [('vector_size', '2048'), ('sample_rate',
+      '10000'), ('center_freq', '0')], [('0', 'float', 2048)], [('0', 'float', 1)],
+      'CFO Estimator (RMS)', ['center_freq', 'sample_rate', 'vector_size'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1448, 972.0]
+    rotation: 0
+    state: true
+- name: epy_block_0_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\n\n\nclass blk(gr.sync_block):  # other base classes\
+      \ are basic_block, decim_block, interp_block\n    \"\"\"CFO Correction (Hz)\"\
+      \"\"\n\n    def __init__(self, sample_rate=32000, max_shift=19000):  # only\
+      \ default arguments here\n        \"\"\"arguments to this function show up as\
+      \ parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n            self,\n\
+      \            name='CFO Correct',   # will show up in GRC\n            in_sig=[np.complex64,\
+      \ np.float32],\n            out_sig=[np.complex64]\n        )\n        # if\
+      \ an attribute with the same name as a parameter is found,\n        # a callback\
+      \ is registered (properties work, too).\n        self.sample_rate = sample_rate\n\
+      \        self.max_shift = max_shift\n        \n    def rads_to_hz(self, rads):\n\
+      \    \treturn (rads / (2*np.pi)) * self.sample_rate\n\n    def work(self, input_items,\
+      \ output_items):\n        \"\"\"CFO correct samples using frequency offset estimation\"\
+      \"\"\n\n        for n, offset in enumerate(input_items[1]):\n        \tif offset\
+      \ < (-self.max_shift):\n        \t    offset = -self.max_shift\n        \telif\
+      \ offset > self.max_shift:\n        \t    offset = self.max_shift\n        \t\
+      \n        \tshift_amt = np.e ** (1j * np.pi * (-offset / (self.sample_rate/2))\
+      \ * n)\n        \t\n        \toutput_items[0][n] = input_items[0][n] * shift_amt\n\
+      \        \n        return len(output_items[0])\n        \n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    max_shift: deviation_for_freq
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sample_rate: decimated_samp_rate
+  states:
+    _io_cache: ('CFO Correct', 'blk', [('sample_rate', '32000'), ('max_shift', '19000')],
+      [('0', 'complex', 1), ('1', 'float', 1)], [('0', 'complex', 1)], 'CFO Correction
+      (Hz)', ['max_shift', 'sample_rate'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1944, 936.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_1
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\n\n\nclass blk(gr.sync_block):  # other base classes\
+      \ are basic_block, decim_block, interp_block\n    \"\"\"Embedded Python Block\
+      \ example - a simple multiply const\"\"\"\n\n    def __init__(self, sync_word=0x1F351F35,\
+      \ sync_bits=32):  # only default arguments here\n        \"\"\"arguments to\
+      \ this function show up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n\
+      \            self,\n            name='Sync Word Finder',   # will show up in\
+      \ GRC\n            in_sig=[np.ubyte],\n            out_sig=[np.short]\n    \
+      \    )\n        \n        if sync_word == 0:\n            raise Exception('sync\
+      \ word of 0 not supported')\n        \n        # if an attribute with the same\
+      \ name as a parameter is found,\n        # a callback is registered (properties\
+      \ work, too).\n        self.sync_word = sync_word\n        self.sync_bits =\
+      \ sync_bits\n        \n        # register for shifting in sync word\n      \
+      \  self.sync_mask = 2**self.sync_bits - 1\n        self.shift_reg = 0\n    \
+      \    \n        # shift in data bytes\n        self.shift_byte = 0\n        self.shift_byte_bits\
+      \ = 0\n        \n        self.pkt_len = 0\n        \n        self.sync_state\
+      \ = 0\n\n    def work(self, input_items, output_items):\n    \n        # output\
+      \ byte array\n        #output_items[1] = []\n\n        for i, bit in enumerate(input_items[0]):\n\
+      \            \n            # find sync word\n            if self.sync_state\
+      \ == 0:\n                self.shift_reg = ((self.shift_reg << 1) | (bit & 1))\
+      \ & self.sync_mask\n                \n                if self.shift_reg == self.sync_word:\n\
+      \                    output_items[0][i] = 1\n                    \n        \
+      \            # transition to state 1\n                    self.sync_state =\
+      \ 1\n                    self.shift_byte = 0\n                    self.shift_byte_bits\
+      \ = 0\n                    continue\n                else:\n               \
+      \     output_items[0][i] = 0\n                    \n            # shift in length\
+      \ byte\n            if self.sync_state == 1:\n                self.shift_byte\
+      \ = ((self.shift_byte << 1) | (bit & 1)) & 0xFF\n                self.shift_byte_bits\
+      \ += 1\n                \n                output_items[0][i] = 1\n         \
+      \       \n                if self.shift_byte_bits == 8:\n                  \
+      \  #output_items[1].append(self.shift_byte)\n                    \n        \
+      \            # first CC1101 whitening mask byte is always 0xFF\n           \
+      \         self.pkt_len = self.shift_byte ^ 0xFF\n                    #print(f'packet\
+      \ length byte {self.shift_byte:#04x}: {self.pkt_len} ({self.pkt_len * 8} bits)')\n\
+      \                    \n                    # transition to state 2\n       \
+      \             self.shift_byte = 0\n                    self.shift_byte_bits\
+      \ = 0\n                    self.sync_state = 2\n                    continue\n\
+      \ \n            # consume data bytes\n            if self.sync_state == 2:\n\
+      \                self.shift_byte = ((self.shift_byte << 1) | (bit & 1)) & 0xFF\n\
+      \                self.shift_byte_bits += 1\n                \n             \
+      \   output_items[0][i] = 1\n                \n                #if self.shift_byte_bits\
+      \ & 7 == 0:\n                    #print(self.shift_byte)\n                 \
+      \   #output_items[1].append(self.shift_byte)\n                \n           \
+      \     if self.shift_byte_bits == self.pkt_len * 8:\n                    # transition\
+      \ to state 0\n                    self.shift_reg = 0\n                    self.sync_state\
+      \ = 0\n                    continue\n \n        return len(output_items[0])\n\
+      \n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sync_bits: '32'
+    sync_word: '523575093'
+  states:
+    _io_cache: ('Sync Word Finder', 'blk', [('sync_word', '523575093'), ('sync_bits',
+      '32')], [('0', 'byte', 1)], [('0', 'short', 1)], 'Embedded Python Block example
+      - a simple multiply const', ['sync_bits', 'sync_word'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 1772.0]
+    rotation: 0
+    state: true
+- name: epy_block_1_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\n\n\nclass powerg_sync_blk(gr.basic_block):  # other\
+      \ base classes are basic_block, decim_block, interp_block\n    \"\"\"PowerG:\
+      \ output packets on sync word\"\"\"\n\n    def __init__(self, sync_word=0x1F351F35,\
+      \ sync_bits=32):\n        gr.basic_block.__init__(\n            self,\n    \
+      \        name='PowerG Sync Output',   # will show up in GRC\n            in_sig=[np.ubyte],\n\
+      \            out_sig=[np.ubyte]\n        )\n        \n        if sync_word ==\
+      \ 0:\n            raise Exception('sync word of 0 not supported')\n        \n\
+      \        # if an attribute with the same name as a parameter is found,\n   \
+      \     # a callback is registered (properties work, too).\n        self.sync_word\
+      \ = sync_word\n        self.sync_bits = sync_bits\n        \n        # register\
+      \ for shifting in sync word\n        self.sync_mask = 2**self.sync_bits - 1\n\
+      \        self.shift_reg = 0\n        \n        # shift in data bytes\n     \
+      \   self.shift_byte = 0\n        self.shift_byte_bits = 0\n        \n      \
+      \  self.pkt_len = 0\n        \n        self.sync_state = 0\n\n    def general_work(self,\
+      \ input_items, output_items):\n        out_i = 0\n\n        for i, bit in enumerate(input_items[0]):\n\
+      \            self.consume(0, 1)\n            \n            # find sync word\n\
+      \            if self.sync_state == 0:\n                self.shift_reg = ((self.shift_reg\
+      \ << 1) | (bit & 1)) & self.sync_mask\n                \n                if\
+      \ self.shift_reg == self.sync_word:\n                    # transition to state\
+      \ 1\n                    self.sync_state = 1\n                    self.shift_byte\
+      \ = 0\n                    self.shift_byte_bits = 0\n                    continue\n\
+      \                    \n            # shift in length byte\n            if self.sync_state\
+      \ == 1:\n                self.shift_byte = ((self.shift_byte << 1) | (bit &\
+      \ 1)) & 0xFF\n                self.shift_byte_bits += 1\n                \n\
+      \                if self.shift_byte_bits == 8:\n                    output_items[0][out_i]\
+      \ = self.shift_byte\n                    out_i += 1\n                    \n\
+      \                    # first CC1101 whitening mask byte is always 0xFF\n   \
+      \                 # add 2 for CRC-16 bytes\n                    self.pkt_len\
+      \ = (self.shift_byte ^ 0xFF) + 2\n                    #print(f'packet length\
+      \ byte {self.shift_byte:#04x}: {self.pkt_len} ({self.pkt_len * 8} bits)')\n\
+      \                    \n                    # transition to state 2\n       \
+      \             self.shift_byte = 0\n                    self.shift_byte_bits\
+      \ = 0\n                    self.sync_state = 2\n                    continue\n\
+      \ \n            # consume data bytes\n            if self.sync_state == 2:\n\
+      \                self.shift_byte = ((self.shift_byte << 1) | (bit & 1)) & 0xFF\n\
+      \                self.shift_byte_bits += 1\n                \n             \
+      \   if self.shift_byte_bits & 7 == 0:\n                    #print(self.shift_byte)\n\
+      \                    output_items[0][out_i] = self.shift_byte\n            \
+      \        out_i += 1\n                \n                if self.shift_byte_bits\
+      \ == self.pkt_len * 8:\n                    # transition to state 0\n      \
+      \              self.shift_reg = 0\n                    self.sync_state = 0\n\
+      \                    continue\n \n        #return len(output_items[0])\n   \
+      \     return out_i\n\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sync_bits: '32'
+    sync_word: '523575093'
+  states:
+    _io_cache: '(''PowerG Sync Output'', ''powerg_sync_blk'', [(''sync_word'', ''523575093''),
+      (''sync_bits'', ''32'')], [(''0'', ''byte'', 1)], [(''0'', ''byte'', 1)], ''PowerG:
+      output packets on sync word'', [''sync_bits'', ''sync_word''])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 1836.0]
+    rotation: 0
+    state: disabled
+- name: fft_vxx_0
+  id: fft_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fft_size: fft_vec_sz
+    forward: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nthreads: '1'
+    shift: 'True'
+    type: complex
+    window: window.blackmanharris(fft_vec_sz)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [512, 956.0]
+    rotation: 0
+    state: true
+- name: freq_xlating_fir_filter_xxx_0
+  id: freq_xlating_fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    center_freq: chan_center_freq - center_freq
+    comment: ''
+    decim: decimation_rate
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    taps: firdes.complex_band_pass(1, samp_rate, -(chan_spacing/2), chan_spacing/2,
+      bp_transition_width)
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 540.0]
+    rotation: 0
+    state: enabled
+- name: low_pass_filter_0
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: symbols_per_second
+    decim: '1'
+    gain: '1'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: decimated_samp_rate
+    type: interp_fir_filter_fff
+    width: '5000'
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [648, 1236.0]
+    rotation: 0
+    state: enabled
+- name: osmosdr_source_0
+  id: osmosdr_source
+  parameters:
+    affinity: ''
+    alias: ''
+    ant0: ''
+    ant1: ''
+    ant10: ''
+    ant11: ''
+    ant12: ''
+    ant13: ''
+    ant14: ''
+    ant15: ''
+    ant16: ''
+    ant17: ''
+    ant18: ''
+    ant19: ''
+    ant2: ''
+    ant20: ''
+    ant21: ''
+    ant22: ''
+    ant23: ''
+    ant24: ''
+    ant25: ''
+    ant26: ''
+    ant27: ''
+    ant28: ''
+    ant29: ''
+    ant3: ''
+    ant30: ''
+    ant31: ''
+    ant4: ''
+    ant5: ''
+    ant6: ''
+    ant7: ''
+    ant8: ''
+    ant9: ''
+    args: hackrf=0
+    bb_gain0: '20'
+    bb_gain1: '20'
+    bb_gain10: '20'
+    bb_gain11: '20'
+    bb_gain12: '20'
+    bb_gain13: '20'
+    bb_gain14: '20'
+    bb_gain15: '20'
+    bb_gain16: '20'
+    bb_gain17: '20'
+    bb_gain18: '20'
+    bb_gain19: '20'
+    bb_gain2: '20'
+    bb_gain20: '20'
+    bb_gain21: '20'
+    bb_gain22: '20'
+    bb_gain23: '20'
+    bb_gain24: '20'
+    bb_gain25: '20'
+    bb_gain26: '20'
+    bb_gain27: '20'
+    bb_gain28: '20'
+    bb_gain29: '20'
+    bb_gain3: '20'
+    bb_gain30: '20'
+    bb_gain31: '20'
+    bb_gain4: '20'
+    bb_gain5: '20'
+    bb_gain6: '20'
+    bb_gain7: '20'
+    bb_gain8: '20'
+    bb_gain9: '20'
+    bw0: '0'
+    bw1: '0'
+    bw10: '0'
+    bw11: '0'
+    bw12: '0'
+    bw13: '0'
+    bw14: '0'
+    bw15: '0'
+    bw16: '0'
+    bw17: '0'
+    bw18: '0'
+    bw19: '0'
+    bw2: '0'
+    bw20: '0'
+    bw21: '0'
+    bw22: '0'
+    bw23: '0'
+    bw24: '0'
+    bw25: '0'
+    bw26: '0'
+    bw27: '0'
+    bw28: '0'
+    bw29: '0'
+    bw3: '0'
+    bw30: '0'
+    bw31: '0'
+    bw4: '0'
+    bw5: '0'
+    bw6: '0'
+    bw7: '0'
+    bw8: '0'
+    bw9: '0'
+    clock_source0: ''
+    clock_source1: ''
+    clock_source2: ''
+    clock_source3: ''
+    clock_source4: ''
+    clock_source5: ''
+    clock_source6: ''
+    clock_source7: ''
+    comment: ''
+    corr0: '0'
+    corr1: '0'
+    corr10: '0'
+    corr11: '0'
+    corr12: '0'
+    corr13: '0'
+    corr14: '0'
+    corr15: '0'
+    corr16: '0'
+    corr17: '0'
+    corr18: '0'
+    corr19: '0'
+    corr2: '0'
+    corr20: '0'
+    corr21: '0'
+    corr22: '0'
+    corr23: '0'
+    corr24: '0'
+    corr25: '0'
+    corr26: '0'
+    corr27: '0'
+    corr28: '0'
+    corr29: '0'
+    corr3: '0'
+    corr30: '0'
+    corr31: '0'
+    corr4: '0'
+    corr5: '0'
+    corr6: '0'
+    corr7: '0'
+    corr8: '0'
+    corr9: '0'
+    dc_offset_mode0: '1'
+    dc_offset_mode1: '0'
+    dc_offset_mode10: '0'
+    dc_offset_mode11: '0'
+    dc_offset_mode12: '0'
+    dc_offset_mode13: '0'
+    dc_offset_mode14: '0'
+    dc_offset_mode15: '0'
+    dc_offset_mode16: '0'
+    dc_offset_mode17: '0'
+    dc_offset_mode18: '0'
+    dc_offset_mode19: '0'
+    dc_offset_mode2: '0'
+    dc_offset_mode20: '0'
+    dc_offset_mode21: '0'
+    dc_offset_mode22: '0'
+    dc_offset_mode23: '0'
+    dc_offset_mode24: '0'
+    dc_offset_mode25: '0'
+    dc_offset_mode26: '0'
+    dc_offset_mode27: '0'
+    dc_offset_mode28: '0'
+    dc_offset_mode29: '0'
+    dc_offset_mode3: '0'
+    dc_offset_mode30: '0'
+    dc_offset_mode31: '0'
+    dc_offset_mode4: '0'
+    dc_offset_mode5: '0'
+    dc_offset_mode6: '0'
+    dc_offset_mode7: '0'
+    dc_offset_mode8: '0'
+    dc_offset_mode9: '0'
+    freq0: center_freq
+    freq1: 100e6
+    freq10: 100e6
+    freq11: 100e6
+    freq12: 100e6
+    freq13: 100e6
+    freq14: 100e6
+    freq15: 100e6
+    freq16: 100e6
+    freq17: 100e6
+    freq18: 100e6
+    freq19: 100e6
+    freq2: 100e6
+    freq20: 100e6
+    freq21: 100e6
+    freq22: 100e6
+    freq23: 100e6
+    freq24: 100e6
+    freq25: 100e6
+    freq26: 100e6
+    freq27: 100e6
+    freq28: 100e6
+    freq29: 100e6
+    freq3: 100e6
+    freq30: 100e6
+    freq31: 100e6
+    freq4: 100e6
+    freq5: 100e6
+    freq6: 100e6
+    freq7: 100e6
+    freq8: 100e6
+    freq9: 100e6
+    gain0: '0'
+    gain1: '10'
+    gain10: '10'
+    gain11: '10'
+    gain12: '10'
+    gain13: '10'
+    gain14: '10'
+    gain15: '10'
+    gain16: '10'
+    gain17: '10'
+    gain18: '10'
+    gain19: '10'
+    gain2: '10'
+    gain20: '10'
+    gain21: '10'
+    gain22: '10'
+    gain23: '10'
+    gain24: '10'
+    gain25: '10'
+    gain26: '10'
+    gain27: '10'
+    gain28: '10'
+    gain29: '10'
+    gain3: '10'
+    gain30: '10'
+    gain31: '10'
+    gain4: '10'
+    gain5: '10'
+    gain6: '10'
+    gain7: '10'
+    gain8: '10'
+    gain9: '10'
+    gain_mode0: 'False'
+    gain_mode1: 'False'
+    gain_mode10: 'False'
+    gain_mode11: 'False'
+    gain_mode12: 'False'
+    gain_mode13: 'False'
+    gain_mode14: 'False'
+    gain_mode15: 'False'
+    gain_mode16: 'False'
+    gain_mode17: 'False'
+    gain_mode18: 'False'
+    gain_mode19: 'False'
+    gain_mode2: 'False'
+    gain_mode20: 'False'
+    gain_mode21: 'False'
+    gain_mode22: 'False'
+    gain_mode23: 'False'
+    gain_mode24: 'False'
+    gain_mode25: 'False'
+    gain_mode26: 'False'
+    gain_mode27: 'False'
+    gain_mode28: 'False'
+    gain_mode29: 'False'
+    gain_mode3: 'False'
+    gain_mode30: 'False'
+    gain_mode31: 'False'
+    gain_mode4: 'False'
+    gain_mode5: 'False'
+    gain_mode6: 'False'
+    gain_mode7: 'False'
+    gain_mode8: 'False'
+    gain_mode9: 'False'
+    if_gain0: '20'
+    if_gain1: '20'
+    if_gain10: '20'
+    if_gain11: '20'
+    if_gain12: '20'
+    if_gain13: '20'
+    if_gain14: '20'
+    if_gain15: '20'
+    if_gain16: '20'
+    if_gain17: '20'
+    if_gain18: '20'
+    if_gain19: '20'
+    if_gain2: '20'
+    if_gain20: '20'
+    if_gain21: '20'
+    if_gain22: '20'
+    if_gain23: '20'
+    if_gain24: '20'
+    if_gain25: '20'
+    if_gain26: '20'
+    if_gain27: '20'
+    if_gain28: '20'
+    if_gain29: '20'
+    if_gain3: '20'
+    if_gain30: '20'
+    if_gain31: '20'
+    if_gain4: '20'
+    if_gain5: '20'
+    if_gain6: '20'
+    if_gain7: '20'
+    if_gain8: '20'
+    if_gain9: '20'
+    iq_balance_mode0: '0'
+    iq_balance_mode1: '0'
+    iq_balance_mode10: '0'
+    iq_balance_mode11: '0'
+    iq_balance_mode12: '0'
+    iq_balance_mode13: '0'
+    iq_balance_mode14: '0'
+    iq_balance_mode15: '0'
+    iq_balance_mode16: '0'
+    iq_balance_mode17: '0'
+    iq_balance_mode18: '0'
+    iq_balance_mode19: '0'
+    iq_balance_mode2: '0'
+    iq_balance_mode20: '0'
+    iq_balance_mode21: '0'
+    iq_balance_mode22: '0'
+    iq_balance_mode23: '0'
+    iq_balance_mode24: '0'
+    iq_balance_mode25: '0'
+    iq_balance_mode26: '0'
+    iq_balance_mode27: '0'
+    iq_balance_mode28: '0'
+    iq_balance_mode29: '0'
+    iq_balance_mode3: '0'
+    iq_balance_mode30: '0'
+    iq_balance_mode31: '0'
+    iq_balance_mode4: '0'
+    iq_balance_mode5: '0'
+    iq_balance_mode6: '0'
+    iq_balance_mode7: '0'
+    iq_balance_mode8: '0'
+    iq_balance_mode9: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nchan: '1'
+    num_mboards: '1'
+    sample_rate: samp_rate
+    sync: sync
+    time_source0: ''
+    time_source1: ''
+    time_source2: ''
+    time_source3: ''
+    time_source4: ''
+    time_source5: ''
+    time_source6: ''
+    time_source7: ''
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 12.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: decimated_samp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '0'
+    fftsize: '4096'
+    freqhalf: 'True'
+    grid: 'True'
+    gui_hint: 'qtgui_tab_widget_0@1 : 0, 0, 1, 1'
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1216, 228.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_sink_x_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: decimated_samp_rate
+    comment: ''
+    fc: center_freq
+    fftsize: '4096'
+    gui_hint: 'qtgui_tab_widget_0@1 : 0, 0, 1, 1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"band pass filter"'
+    plotconst: 'False'
+    plotfreq: 'True'
+    plottime: 'False'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'True'
+    type: complex
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1216, 308.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_sink_x_0_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: samp_rate
+    comment: ''
+    fc: center_freq
+    fftsize: '1024'
+    gui_hint: qtgui_tab_widget_0@0
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"RF Samples"'
+    plotconst: 'False'
+    plotfreq: 'True'
+    plottime: 'False'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'True'
+    type: complex
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 268.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_sink_x_0_1
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: decimated_samp_rate
+    comment: ''
+    fc: center_freq -  variable_qtgui_range_shift
+    fftsize: '4096'
+    gui_hint: 'qtgui_tab_widget_0@1 : 0, 1, 1, 1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"band pass filter - freq adjust"'
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'False'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'False'
+    type: complex
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2152, 804.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_tab_widget_0
+  id: qtgui_tab_widget
+  parameters:
+    alias: ''
+    comment: ''
+    gui_hint: ''
+    label0: Capture
+    label1: Decode
+    label10: Tab 10
+    label11: Tab 11
+    label12: Tab 12
+    label13: Tab 13
+    label14: Tab 14
+    label15: Tab 15
+    label16: Tab 16
+    label17: Tab 17
+    label18: Tab 18
+    label19: Tab 19
+    label2: Tab 2
+    label3: Tab 3
+    label4: Tab 4
+    label5: Tab 5
+    label6: Tab 6
+    label7: Tab 7
+    label8: Tab 8
+    label9: Tab 9
+    num_tabs: '2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 556.0]
+    rotation: 0
+    state: true
+- name: qtgui_time_sink_x_0_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '0.5'
+    alpha10: '1.0'
+    alpha2: '0.5'
+    alpha3: '0.5'
+    alpha4: '0.25'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: red
+    color10: dark blue
+    color2: blue
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: 'qtgui_tab_widget_0@1 : 2,0,1,2'
+    label1: Quad Demod
+    label10: Signal 10
+    label2: Binary Slicer
+    label3: Moving Avg
+    label4: Adjusted Moving Avg
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"Quadrature Demod"'
+    nconnections: '2'
+    size: '1024'
+    srate: decimated_samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.1'
+    tr_mode: qtgui.TRIG_MODE_NORM
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1.25'
+    ymin: '-1.25'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1592, 1276.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0_0_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1'
+    alpha10: '1.0'
+    alpha2: '0.5'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: blue
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: 'qtgui_tab_widget_0@1 : 4, 0, 1, 2'
+    label1: GFSK Demod
+    label10: Signal 10
+    label2: GFSK Demod
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"GFSK Demod"'
+    nconnections: '1'
+    size: '1024'
+    srate: decimated_samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.1'
+    tr_mode: qtgui.TRIG_MODE_NORM
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1.25'
+    ymin: '-0.25'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1368, 1668.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0_0_1
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '0.5'
+    alpha10: '1.0'
+    alpha2: '0.5'
+    alpha3: '0.5'
+    alpha4: '0.25'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: red
+    color10: dark blue
+    color2: blue
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: 'qtgui_tab_widget_0@1 : 3, 0, 1, 2'
+    label1: Quad Demod
+    label10: Signal 10
+    label2: Binary Slicer
+    label3: Moving Avg
+    label4: Adjusted Moving Avg
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"Quadrature Demod with Symbol Sync"'
+    nconnections: '2'
+    size: '1024'
+    srate: decimated_samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.1'
+    tr_mode: qtgui.TRIG_MODE_NORM
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1.25'
+    ymin: '-1.25'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1728, 1476.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: rf_samples
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1056, 100.0]
+    rotation: 0
+    state: true
+- name: virtual_sink_1_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: channel_samples
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2152, 948.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_2
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: cfo_fix_in
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1456, 436.0]
+    rotation: 0
+    state: true
+- name: virtual_source_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: rf_samples
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [360, 452.0]
+    rotation: 0
+    state: true
+- name: virtual_source_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: channel_samples
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [96, 1284.0]
+    rotation: 0
+    state: true
+- name: virtual_source_1_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: channel_samples
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1920, 836.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_2
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: cfo_fix_in
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [128, 924.0]
+    rotation: 0
+    state: true
+
+connections:
+- [analog_const_source_x_0, '0', blocks_sub_xx_0, '1']
+- [analog_const_source_x_0_0, '0', blocks_sub_xx_0_0, '1']
+- [analog_quadrature_demod_cf_1, '0', low_pass_filter_0, '0']
+- [analog_quadrature_demod_cf_1_0, '0', digital_binary_slicer_fb_0_0, '0']
+- [analog_quadrature_demod_cf_1_0, '0', qtgui_time_sink_x_0_0_1, '0']
+- [analog_simple_squelch_cc_0, '0', blocks_freqshift_cc_0, '0']
+- [analog_simple_squelch_cc_0, '0', qtgui_freq_sink_x_0, '0']
+- [analog_simple_squelch_cc_0, '0', qtgui_sink_x_0, '0']
+- [band_pass_filter_0, '0', analog_simple_squelch_cc_0, '0']
+- [blocks_burst_tagger_0, '0', blocks_repeat_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', blocks_moving_average_xx_0_1, '0']
+- [blocks_delay_0, '0', epy_block_0_0, '0']
+- [blocks_file_source_0, '0', blocks_throttle_0, '0']
+- [blocks_freqshift_cc_0, '0', virtual_sink_2, '0']
+- [blocks_moving_average_xx_0_1, '0', epy_block_0, '0']
+- [blocks_moving_average_xx_1, '0', blocks_repeat_0_0, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_sub_xx_0, '0']
+- [blocks_multiply_const_vxx_0_0, '0', blocks_sub_xx_0_0, '0']
+- [blocks_multiply_const_xx_0, '0', blocks_complex_to_mag_squared_0, '0']
+- [blocks_repeat_0, '0', qtgui_time_sink_x_0_0_0, '0']
+- [blocks_repeat_0_0, '0', epy_block_0_0, '1']
+- [blocks_stream_to_vector_0, '0', fft_vxx_0, '0']
+- [blocks_sub_xx_0, '0', qtgui_time_sink_x_0_0, '1']
+- [blocks_sub_xx_0_0, '0', qtgui_time_sink_x_0_0_1, '1']
+- [blocks_throttle_0, '0', virtual_sink_0, '0']
+- [blocks_uchar_to_float_0, '0', blocks_burst_tagger_0, '0']
+- [blocks_uchar_to_float_0_0, '0', blocks_multiply_const_vxx_0, '0']
+- [blocks_uchar_to_float_0_0_0, '0', blocks_multiply_const_vxx_0_0, '0']
+- [digital_binary_slicer_fb_0, '0', blocks_uchar_to_float_0_0, '0']
+- [digital_binary_slicer_fb_0_0, '0', blocks_uchar_to_float_0_0_0, '0']
+- [digital_gfsk_demod_0, '0', blocks_file_sink_1, '0']
+- [digital_gfsk_demod_0, '0', blocks_uchar_to_float_0, '0']
+- [digital_gfsk_demod_0, '0', epy_block_1, '0']
+- [digital_gfsk_demod_0, '0', epy_block_1_0, '0']
+- [digital_symbol_sync_xx_0, '0', analog_quadrature_demod_cf_1_0, '0']
+- [epy_block_0, '0', blocks_moving_average_xx_1, '0']
+- [epy_block_0_0, '0', virtual_sink_1_0, '0']
+- [epy_block_1, '0', blocks_burst_tagger_0, '1']
+- [epy_block_1_0, '0', blocks_file_sink_1_0, '0']
+- [fft_vxx_0, '0', blocks_multiply_const_xx_0, '0']
+- [freq_xlating_fir_filter_xxx_0, '0', analog_simple_squelch_cc_0, '0']
+- [low_pass_filter_0, '0', digital_binary_slicer_fb_0, '0']
+- [low_pass_filter_0, '0', qtgui_time_sink_x_0_0, '0']
+- [osmosdr_source_0, '0', blocks_file_sink_0, '0']
+- [osmosdr_source_0, '0', virtual_sink_0, '0']
+- [virtual_source_0, '0', band_pass_filter_0, '0']
+- [virtual_source_0, '0', freq_xlating_fir_filter_xxx_0, '0']
+- [virtual_source_0, '0', qtgui_sink_x_0_0, '0']
+- [virtual_source_1, '0', analog_quadrature_demod_cf_1, '0']
+- [virtual_source_1, '0', digital_gfsk_demod_0, '0']
+- [virtual_source_1, '0', digital_symbol_sync_xx_0, '0']
+- [virtual_source_1_0, '0', qtgui_sink_x_0_1, '0']
+- [virtual_source_2, '0', blocks_delay_0, '0']
+- [virtual_source_2, '0', blocks_stream_to_vector_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.7.0
