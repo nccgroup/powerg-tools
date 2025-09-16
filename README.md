@@ -1,6 +1,12 @@
-# PowerG Tools
+# PowerG Analysis Tools
 
-This is a collection of tools for reverse engineering and interacting with the PowerG radio protocol.
+A collection of tools for reverse engineering and interacting with the PowerG radio protocol.
+
+This release accompanies the research James Chambers and Sultan Qasim Khan presented at REcon and hardwear.io.
+Please see the presentation recording and slides for more information:
+
+* <https://hardwear.io/usa-2025/presentation/powerg_hardweario_2025.pdf>
+* <https://www.youtube.com/watch?v=ptM3iuD0Qfw>
 
 
 ## Directory structure
@@ -13,7 +19,7 @@ This is a collection of tools for reverse engineering and interacting with the P
 ## Open-Source License
 
 ```
-PowerG Tools
+PowerG Analysis Tools
 Copyright (C) 2025  NCC Group
 
 This program is free software: you can redistribute it and/or modify

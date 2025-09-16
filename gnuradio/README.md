@@ -86,27 +86,27 @@ These capture scripts have only been tested on the 915 MHz variant of PowerG har
 Information on the other variants is based on reverse engineering the regional firmware versions, but it may be incomplete or incorrect.
 
 
-> 915 MHZ = NORTH AMERICA, LATAM, CARIBBEAN
-> 433 MHZ = AFRICA, ASIA, AUSTRALIA, EASTERN EUROPE, BRAZIL, PERU, URUGUAY, NEW ZEALAND
-> 868 MHZ = AFRICA, EASTERN EUROPE, WESTERN EUROPE, UK, MIDDLE EAST
+> 915 MHZ = NORTH AMERICA, LATAM, CARIBBEAN  
+> 433 MHZ = AFRICA, ASIA, AUSTRALIA, EASTERN EUROPE, BRAZIL, PERU, URUGUAY, NEW ZEALAND  
+> 868 MHZ = AFRICA, EASTERN EUROPE, WESTERN EUROPE, UK, MIDDLE EAST  
 
 
 ### 915 MHz
 
-* Base: 915,000,000
-* Spacing: 129,730
+* Base: 915,000,000 Hz
+* Spacing: 129,730 Hz
 * Num. channels: 50
 
 
 ### 868 MHz
 
-* Base: 868,000,000
-* Spacing: 50,087
+* Base: 868,000,000 Hz
+* Spacing: 50,087 Hz
 * Num. channels: 4 active (zero-based channel IDs: 4, 8, 17, 21)
 
 
 ### 433 MHz
 
-* Base: 433,000,000
-* Spacing: 200,384
+* Base: 433,000,000 Hz
+* Spacing: 200,384 Hz
 * Num. channels: 8
