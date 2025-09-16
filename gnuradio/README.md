@@ -4,6 +4,7 @@ Open `grc/fhss_detector_powerg.grc` with GNU Radio Companion to begin capturing 
 
 By default, the project is configured to capture the 915 MHz variant of PowerG with a [HackRF One](https://greatscottgadgets.com/hackrf/one/) source.
 Decoded packet data is saved to a file named `powerg_burst_bytes_<timestamp>.csv` in the same directory as the GRC file.
+An example capture file can be found at `pkt_scripts/data/powerg_burst_bytes_2025-06-06T13:34:44.353027.csv`.
 
 The capture device setup can be configured with the "osmocom Source" block at the beginning of the flow.
 Any SDR that can capture the full bandwidth of PowerG should be suitable for performing captures, but we have only tested this setup with a HackRF One.
