@@ -36,7 +36,7 @@ use the `--key` and `--nonce` options to use known values for packet decryption.
 For example, using the keys captured from `door_pairing_jun_25_2024.json`:
 
 ```console
-$ ./pkt_view.py --quick data/powerg_burst_bytes_2025-06-06T13\&%34\&%44.353027.csv --key d17153ea74b95553d8b9fbb4cf876ca4 --nonce 258e6380399b5db86ce78158
+$ ./pkt_view.py --quick data/powerg_burst_bytes_2025-06-06T13:34:44.353027.csv --key d17153ea74b95553d8b9fbb4cf876ca4 --nonce 258e6380399b5db86ce78158
 ...
 quick: 0x0a -> 0x01/0xfd type 0x80, payload: 50a5d8
 quick: 0x01 -> 0x0a/0xfd type 0x51, payload: 3400eb070500
