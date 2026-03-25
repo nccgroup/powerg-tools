@@ -94,20 +94,20 @@ Information on the other variants is based on reverse engineering the regional f
 
 ### 915 MHz
 
-* Base: 915,000,000 Hz
+* Base: 912,749,725 Hz
 * Spacing: 129,730 Hz
 * Num. channels: 50
 
 
 ### 868 MHz
 
-* Base: 868,000,000 Hz
+* Base: 867,999,938 Hz
 * Spacing: 50,087 Hz
 * Num. channels: 4 active (zero-based channel IDs: 4, 8, 17, 21)
 
 
 ### 433 MHz
 
-* Base: 433,000,000 Hz
+* Base: 433,219,604 Hz
 * Spacing: 200,384 Hz
 * Num. channels: 8
