@@ -22,6 +22,6 @@ def get_bottom_freq_hz(cfg_value):
     x = cfg_value * f_osc
 
     upper = cfg_value // 10825961
-    lower = (x >> 16) | ((x >> 32) * 0x10000)
+    lower = x >> 16
 
-    return (upper << 32) | lower
+    return (upper << 32) | (lower & 0xffffffff)
