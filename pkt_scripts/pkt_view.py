@@ -242,6 +242,8 @@ def load_packets_json(data_file):
 
 
 def pkt_quick_display(packet, pkt_data):
+    chan_id = channel_index(packet['metadata']['center_frequency'])
+
     pkt = pkt_data['scapy_pkt']
 
     if pkt_data['payload'] is None:
@@ -251,7 +253,7 @@ def pkt_quick_display(packet, pkt_data):
         display_payload = pkt_data['payload']
         note = ''
 
-    print(f'quick: {pkt.src_addr:#04x} -> {pkt.dst_addr:#04x}/{pkt.addr_related:#04x} type {pkt.msg_type:#04x}, payload: {display_payload.hex()}{note}')
+    print(f'ch {chan_id:02d}: {pkt.src_addr:#04x} -> {pkt.dst_addr:#04x}/{pkt.addr_related:#04x} type {pkt.msg_type:#04x}, payload: {display_payload.hex()}{note}')
 
 
 def main():
